@@ -31,33 +31,19 @@ fs.readFile('kw/kw.xml', function(err, data) {
 		// This will be called for each crawled page
 		"callback":function(error,result,$) {
 
+			// console.log(result);
+
 			console.log("Grabbed",result.body.length,"bytes");
+			// console.log(result.body);
+			console.log('Am gasit: ' + $("div.ads-visurl > a").href);
+			// console.log($("cite", $("div.ads-visurl")).each());
+		    // $ is a jQuery instance scoped to the server-side DOM of the page
+		    $("div.ads-visurl > a").each(function(index, a) {
+		        console.log(a.uri);
+		    });
 
-			// $ is a jQuery instance scoped to the server-side DOM of the page
-			$("div.ads-visurl > a").each(function(index,a) {
-			    c.queue(a.href);
-			    console.log(a.href);
-			});
-		},
+		}
 		});
-
-
-		// This will be called for each crawled page
-		// "callback":function(error,result,$) {
-
-		// 	// console.log(result);
-
-		// 	console.log("Grabbed",result.body.length,"bytes");
-		// 	// console.log(result.body);
-		// 	console.log('Am gasit: ' + $("div.ads-visurl > a").href);
-		// 	// console.log($("cite", $("div.ads-visurl")).each());
-		//     // $ is a jQuery instance scoped to the server-side DOM of the page
-		//     $("div.ads-visurl > a").each(function(index, a) {
-		//         console.log(a.uri);
-		//     });
-
-		// }
-		// });
 
 		// Queue just one URL, with default callback
 		for (var index in kw) {
